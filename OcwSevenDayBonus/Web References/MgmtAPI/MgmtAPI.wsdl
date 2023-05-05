@@ -1,0 +1,1508 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="RefreshRedis">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RefreshRedisResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUserAccountSummary">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoginAccount" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SummaryDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserAccountSummaryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserAccountSummaryResult" type="tns:UserAccountSummaryResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserAccountSummaryResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:APIResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="SummaryGUID" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="SummaryDate" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="LoginAccount" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="DepositCount" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="DepositRealAmount" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="DepositAmount" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="WithdrawalCount" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="WithdrawalRealAmount" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="WithdrawalAmount" type="s:decimal" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="APIResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="tns:enumResult" />
+          <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="enumResult">
+        <s:restriction base="s:string">
+          <s:enumeration value="OK" />
+          <s:enumeration value="ERR" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetUserAccountTotalSummary">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoginAccount" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserAccountTotalSummaryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserAccountTotalSummaryResult" type="tns:UserAccountTotalSummaryResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserAccountTotalSummaryResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:APIResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="LoginAccount" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="DepositCount" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="DepositRealAmount" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="DepositAmount" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="WithdrawalCount" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="WithdrawalRealAmount" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="WithdrawalAmount" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="LastDepositDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="LastWithdrawalDate" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="FingerPrint" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="OpenSite">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OpenSiteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OpenSiteResult" type="tns:APIResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MaintainSite">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MaintainSiteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MaintainSiteResult" type="tns:APIResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EnableWithdrawlTemporaryMaintenance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EnableWithdrawlTemporaryMaintenanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EnableWithdrawlTemporaryMaintenanceResult" type="tns:APIResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DisableWithdrawlTemporaryMaintenance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DisableWithdrawlTemporaryMaintenanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DisableWithdrawlTemporaryMaintenanceResult" type="tns:APIResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAnnouncement">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Announcement" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAnnouncementResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateAnnouncementResult" type="tns:APIResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CalculatePaymentValue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PaymentSerial" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CalculatePaymentValueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CalculatePaymentValueResult" type="tns:PaymentValueReslut" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PaymentValueReslut">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:APIResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="LoginAccount" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PaymentCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PaymentSerial" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="TotalPointValue" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="TotalThresholdValue" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="ActivityDescription" type="tns:ArrayOfString" />
+              <s:element minOccurs="0" maxOccurs="1" name="PaymentDescription" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateBulletinBoardState">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="BulletinBoardID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="State" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateBulletinBoardStateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateBulletinBoardStateResult" type="tns:APIResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertBulletinBoard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BulletinTitle" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BulletinContent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertBulletinBoardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertBulletinBoardResult" type="tns:APIResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertUserAccountNotify">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoginAccount" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NotifyContent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="URL" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertUserAccountNotifyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertUserAccountNotifyResult" type="tns:APIResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyCategoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCompanyCategoryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateCompanyCategoryState">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyCategoryID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="State" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateCompanyCategoryStateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateCompanyCategoryStateResult" type="tns:APIResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetSevenDateBonusForConsole">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetSevenDateBonusForConsoleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetSevenDateBonusForConsoleResult" type="tns:APIResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMailResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SendMailMult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="JsonStrEmail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMailMultResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UserAccountSummaryResult" nillable="true" type="tns:UserAccountSummaryResult" />
+      <s:element name="UserAccountTotalSummaryResult" nillable="true" type="tns:UserAccountTotalSummaryResult" />
+      <s:element name="APIResult" nillable="true" type="tns:APIResult" />
+      <s:element name="PaymentValueReslut" nillable="true" type="tns:PaymentValueReslut" />
+      <s:element name="DataTable" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="RefreshRedisSoapIn">
+    <wsdl:part name="parameters" element="tns:RefreshRedis" />
+  </wsdl:message>
+  <wsdl:message name="RefreshRedisSoapOut">
+    <wsdl:part name="parameters" element="tns:RefreshRedisResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserAccountSummarySoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserAccountSummary" />
+  </wsdl:message>
+  <wsdl:message name="GetUserAccountSummarySoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserAccountSummaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserAccountTotalSummarySoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserAccountTotalSummary" />
+  </wsdl:message>
+  <wsdl:message name="GetUserAccountTotalSummarySoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserAccountTotalSummaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="OpenSiteSoapIn">
+    <wsdl:part name="parameters" element="tns:OpenSite" />
+  </wsdl:message>
+  <wsdl:message name="OpenSiteSoapOut">
+    <wsdl:part name="parameters" element="tns:OpenSiteResponse" />
+  </wsdl:message>
+  <wsdl:message name="MaintainSiteSoapIn">
+    <wsdl:part name="parameters" element="tns:MaintainSite" />
+  </wsdl:message>
+  <wsdl:message name="MaintainSiteSoapOut">
+    <wsdl:part name="parameters" element="tns:MaintainSiteResponse" />
+  </wsdl:message>
+  <wsdl:message name="EnableWithdrawlTemporaryMaintenanceSoapIn">
+    <wsdl:part name="parameters" element="tns:EnableWithdrawlTemporaryMaintenance" />
+  </wsdl:message>
+  <wsdl:message name="EnableWithdrawlTemporaryMaintenanceSoapOut">
+    <wsdl:part name="parameters" element="tns:EnableWithdrawlTemporaryMaintenanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="DisableWithdrawlTemporaryMaintenanceSoapIn">
+    <wsdl:part name="parameters" element="tns:DisableWithdrawlTemporaryMaintenance" />
+  </wsdl:message>
+  <wsdl:message name="DisableWithdrawlTemporaryMaintenanceSoapOut">
+    <wsdl:part name="parameters" element="tns:DisableWithdrawlTemporaryMaintenanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAnnouncementSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateAnnouncement" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAnnouncementSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateAnnouncementResponse" />
+  </wsdl:message>
+  <wsdl:message name="CalculatePaymentValueSoapIn">
+    <wsdl:part name="parameters" element="tns:CalculatePaymentValue" />
+  </wsdl:message>
+  <wsdl:message name="CalculatePaymentValueSoapOut">
+    <wsdl:part name="parameters" element="tns:CalculatePaymentValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBulletinBoardStateSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateBulletinBoardState" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBulletinBoardStateSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateBulletinBoardStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertBulletinBoardSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertBulletinBoard" />
+  </wsdl:message>
+  <wsdl:message name="InsertBulletinBoardSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertBulletinBoardResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertUserAccountNotifySoapIn">
+    <wsdl:part name="parameters" element="tns:InsertUserAccountNotify" />
+  </wsdl:message>
+  <wsdl:message name="InsertUserAccountNotifySoapOut">
+    <wsdl:part name="parameters" element="tns:InsertUserAccountNotifyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompanyCategory" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompanyCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCompanyCategoryStateSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateCompanyCategoryState" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCompanyCategoryStateSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateCompanyCategoryStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetSevenDateBonusForConsoleSoapIn">
+    <wsdl:part name="parameters" element="tns:SetSevenDateBonusForConsole" />
+  </wsdl:message>
+  <wsdl:message name="SetSevenDateBonusForConsoleSoapOut">
+    <wsdl:part name="parameters" element="tns:SetSevenDateBonusForConsoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendMailSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMail" />
+  </wsdl:message>
+  <wsdl:message name="SendMailSoapOut">
+    <wsdl:part name="parameters" element="tns:SendMailResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendMailMultSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMailMult" />
+  </wsdl:message>
+  <wsdl:message name="SendMailMultSoapOut">
+    <wsdl:part name="parameters" element="tns:SendMailMultResponse" />
+  </wsdl:message>
+  <wsdl:message name="RefreshRedisHttpGetIn">
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RefreshRedisHttpGetOut" />
+  <wsdl:message name="GetUserAccountSummaryHttpGetIn">
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="LoginAccount" type="s:string" />
+    <wsdl:part name="SummaryDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserAccountSummaryHttpGetOut">
+    <wsdl:part name="Body" element="tns:UserAccountSummaryResult" />
+  </wsdl:message>
+  <wsdl:message name="GetUserAccountTotalSummaryHttpGetIn">
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="LoginAccount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserAccountTotalSummaryHttpGetOut">
+    <wsdl:part name="Body" element="tns:UserAccountTotalSummaryResult" />
+  </wsdl:message>
+  <wsdl:message name="OpenSiteHttpGetIn">
+    <wsdl:part name="Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="OpenSiteHttpGetOut">
+    <wsdl:part name="Body" element="tns:APIResult" />
+  </wsdl:message>
+  <wsdl:message name="MaintainSiteHttpGetIn">
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MaintainSiteHttpGetOut">
+    <wsdl:part name="Body" element="tns:APIResult" />
+  </wsdl:message>
+  <wsdl:message name="EnableWithdrawlTemporaryMaintenanceHttpGetIn">
+    <wsdl:part name="Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EnableWithdrawlTemporaryMaintenanceHttpGetOut">
+    <wsdl:part name="Body" element="tns:APIResult" />
+  </wsdl:message>
+  <wsdl:message name="DisableWithdrawlTemporaryMaintenanceHttpGetIn">
+    <wsdl:part name="Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DisableWithdrawlTemporaryMaintenanceHttpGetOut">
+    <wsdl:part name="Body" element="tns:APIResult" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAnnouncementHttpGetIn">
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="Title" type="s:string" />
+    <wsdl:part name="Announcement" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAnnouncementHttpGetOut">
+    <wsdl:part name="Body" element="tns:APIResult" />
+  </wsdl:message>
+  <wsdl:message name="CalculatePaymentValueHttpGetIn">
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="PaymentSerial" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CalculatePaymentValueHttpGetOut">
+    <wsdl:part name="Body" element="tns:PaymentValueReslut" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBulletinBoardStateHttpGetIn">
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="BulletinBoardID" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBulletinBoardStateHttpGetOut">
+    <wsdl:part name="Body" element="tns:APIResult" />
+  </wsdl:message>
+  <wsdl:message name="InsertBulletinBoardHttpGetIn">
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="BulletinTitle" type="s:string" />
+    <wsdl:part name="BulletinContent" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertBulletinBoardHttpGetOut">
+    <wsdl:part name="Body" element="tns:APIResult" />
+  </wsdl:message>
+  <wsdl:message name="InsertUserAccountNotifyHttpGetIn">
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="LoginAccount" type="s:string" />
+    <wsdl:part name="Title" type="s:string" />
+    <wsdl:part name="NotifyContent" type="s:string" />
+    <wsdl:part name="URL" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertUserAccountNotifyHttpGetOut">
+    <wsdl:part name="Body" element="tns:APIResult" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyCategoryHttpGetIn">
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyCategoryHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCompanyCategoryStateHttpGetIn">
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="CompanyCategoryID" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCompanyCategoryStateHttpGetOut">
+    <wsdl:part name="Body" element="tns:APIResult" />
+  </wsdl:message>
+  <wsdl:message name="SetSevenDateBonusForConsoleHttpGetIn">
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SetSevenDateBonusForConsoleHttpGetOut">
+    <wsdl:part name="Body" element="tns:APIResult" />
+  </wsdl:message>
+  <wsdl:message name="SendMailHttpGetIn">
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="Subject" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMailHttpGetOut" />
+  <wsdl:message name="SendMailMultHttpGetIn">
+    <wsdl:part name="JsonStrEmail" type="s:string" />
+    <wsdl:part name="Subject" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMailMultHttpGetOut" />
+  <wsdl:message name="RefreshRedisHttpPostIn">
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RefreshRedisHttpPostOut" />
+  <wsdl:message name="GetUserAccountSummaryHttpPostIn">
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="LoginAccount" type="s:string" />
+    <wsdl:part name="SummaryDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserAccountSummaryHttpPostOut">
+    <wsdl:part name="Body" element="tns:UserAccountSummaryResult" />
+  </wsdl:message>
+  <wsdl:message name="GetUserAccountTotalSummaryHttpPostIn">
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="LoginAccount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserAccountTotalSummaryHttpPostOut">
+    <wsdl:part name="Body" element="tns:UserAccountTotalSummaryResult" />
+  </wsdl:message>
+  <wsdl:message name="OpenSiteHttpPostIn">
+    <wsdl:part name="Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="OpenSiteHttpPostOut">
+    <wsdl:part name="Body" element="tns:APIResult" />
+  </wsdl:message>
+  <wsdl:message name="MaintainSiteHttpPostIn">
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MaintainSiteHttpPostOut">
+    <wsdl:part name="Body" element="tns:APIResult" />
+  </wsdl:message>
+  <wsdl:message name="EnableWithdrawlTemporaryMaintenanceHttpPostIn">
+    <wsdl:part name="Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EnableWithdrawlTemporaryMaintenanceHttpPostOut">
+    <wsdl:part name="Body" element="tns:APIResult" />
+  </wsdl:message>
+  <wsdl:message name="DisableWithdrawlTemporaryMaintenanceHttpPostIn">
+    <wsdl:part name="Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DisableWithdrawlTemporaryMaintenanceHttpPostOut">
+    <wsdl:part name="Body" element="tns:APIResult" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAnnouncementHttpPostIn">
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="Title" type="s:string" />
+    <wsdl:part name="Announcement" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAnnouncementHttpPostOut">
+    <wsdl:part name="Body" element="tns:APIResult" />
+  </wsdl:message>
+  <wsdl:message name="CalculatePaymentValueHttpPostIn">
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="PaymentSerial" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CalculatePaymentValueHttpPostOut">
+    <wsdl:part name="Body" element="tns:PaymentValueReslut" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBulletinBoardStateHttpPostIn">
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="BulletinBoardID" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBulletinBoardStateHttpPostOut">
+    <wsdl:part name="Body" element="tns:APIResult" />
+  </wsdl:message>
+  <wsdl:message name="InsertBulletinBoardHttpPostIn">
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="BulletinTitle" type="s:string" />
+    <wsdl:part name="BulletinContent" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertBulletinBoardHttpPostOut">
+    <wsdl:part name="Body" element="tns:APIResult" />
+  </wsdl:message>
+  <wsdl:message name="InsertUserAccountNotifyHttpPostIn">
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="LoginAccount" type="s:string" />
+    <wsdl:part name="Title" type="s:string" />
+    <wsdl:part name="NotifyContent" type="s:string" />
+    <wsdl:part name="URL" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertUserAccountNotifyHttpPostOut">
+    <wsdl:part name="Body" element="tns:APIResult" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyCategoryHttpPostIn">
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyCategoryHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCompanyCategoryStateHttpPostIn">
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="CompanyCategoryID" type="s:string" />
+    <wsdl:part name="State" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCompanyCategoryStateHttpPostOut">
+    <wsdl:part name="Body" element="tns:APIResult" />
+  </wsdl:message>
+  <wsdl:message name="SetSevenDateBonusForConsoleHttpPostIn">
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SetSevenDateBonusForConsoleHttpPostOut">
+    <wsdl:part name="Body" element="tns:APIResult" />
+  </wsdl:message>
+  <wsdl:message name="SendMailHttpPostIn">
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="Subject" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMailHttpPostOut" />
+  <wsdl:message name="SendMailMultHttpPostIn">
+    <wsdl:part name="JsonStrEmail" type="s:string" />
+    <wsdl:part name="Subject" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMailMultHttpPostOut" />
+  <wsdl:portType name="MgmtAPISoap">
+    <wsdl:operation name="RefreshRedis">
+      <wsdl:input message="tns:RefreshRedisSoapIn" />
+      <wsdl:output message="tns:RefreshRedisSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAccountSummary">
+      <wsdl:input message="tns:GetUserAccountSummarySoapIn" />
+      <wsdl:output message="tns:GetUserAccountSummarySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAccountTotalSummary">
+      <wsdl:input message="tns:GetUserAccountTotalSummarySoapIn" />
+      <wsdl:output message="tns:GetUserAccountTotalSummarySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OpenSite">
+      <wsdl:input message="tns:OpenSiteSoapIn" />
+      <wsdl:output message="tns:OpenSiteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MaintainSite">
+      <wsdl:input message="tns:MaintainSiteSoapIn" />
+      <wsdl:output message="tns:MaintainSiteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EnableWithdrawlTemporaryMaintenance">
+      <wsdl:input message="tns:EnableWithdrawlTemporaryMaintenanceSoapIn" />
+      <wsdl:output message="tns:EnableWithdrawlTemporaryMaintenanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DisableWithdrawlTemporaryMaintenance">
+      <wsdl:input message="tns:DisableWithdrawlTemporaryMaintenanceSoapIn" />
+      <wsdl:output message="tns:DisableWithdrawlTemporaryMaintenanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAnnouncement">
+      <wsdl:input message="tns:UpdateAnnouncementSoapIn" />
+      <wsdl:output message="tns:UpdateAnnouncementSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CalculatePaymentValue">
+      <wsdl:input message="tns:CalculatePaymentValueSoapIn" />
+      <wsdl:output message="tns:CalculatePaymentValueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBulletinBoardState">
+      <wsdl:input message="tns:UpdateBulletinBoardStateSoapIn" />
+      <wsdl:output message="tns:UpdateBulletinBoardStateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertBulletinBoard">
+      <wsdl:input message="tns:InsertBulletinBoardSoapIn" />
+      <wsdl:output message="tns:InsertBulletinBoardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserAccountNotify">
+      <wsdl:input message="tns:InsertUserAccountNotifySoapIn" />
+      <wsdl:output message="tns:InsertUserAccountNotifySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyCategory">
+      <wsdl:input message="tns:GetCompanyCategorySoapIn" />
+      <wsdl:output message="tns:GetCompanyCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCompanyCategoryState">
+      <wsdl:input message="tns:UpdateCompanyCategoryStateSoapIn" />
+      <wsdl:output message="tns:UpdateCompanyCategoryStateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetSevenDateBonusForConsole">
+      <wsdl:input message="tns:SetSevenDateBonusForConsoleSoapIn" />
+      <wsdl:output message="tns:SetSevenDateBonusForConsoleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMail">
+      <wsdl:input message="tns:SendMailSoapIn" />
+      <wsdl:output message="tns:SendMailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMailMult">
+      <wsdl:input message="tns:SendMailMultSoapIn" />
+      <wsdl:output message="tns:SendMailMultSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="MgmtAPIHttpGet">
+    <wsdl:operation name="RefreshRedis">
+      <wsdl:input message="tns:RefreshRedisHttpGetIn" />
+      <wsdl:output message="tns:RefreshRedisHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAccountSummary">
+      <wsdl:input message="tns:GetUserAccountSummaryHttpGetIn" />
+      <wsdl:output message="tns:GetUserAccountSummaryHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAccountTotalSummary">
+      <wsdl:input message="tns:GetUserAccountTotalSummaryHttpGetIn" />
+      <wsdl:output message="tns:GetUserAccountTotalSummaryHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OpenSite">
+      <wsdl:input message="tns:OpenSiteHttpGetIn" />
+      <wsdl:output message="tns:OpenSiteHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MaintainSite">
+      <wsdl:input message="tns:MaintainSiteHttpGetIn" />
+      <wsdl:output message="tns:MaintainSiteHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EnableWithdrawlTemporaryMaintenance">
+      <wsdl:input message="tns:EnableWithdrawlTemporaryMaintenanceHttpGetIn" />
+      <wsdl:output message="tns:EnableWithdrawlTemporaryMaintenanceHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DisableWithdrawlTemporaryMaintenance">
+      <wsdl:input message="tns:DisableWithdrawlTemporaryMaintenanceHttpGetIn" />
+      <wsdl:output message="tns:DisableWithdrawlTemporaryMaintenanceHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAnnouncement">
+      <wsdl:input message="tns:UpdateAnnouncementHttpGetIn" />
+      <wsdl:output message="tns:UpdateAnnouncementHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CalculatePaymentValue">
+      <wsdl:input message="tns:CalculatePaymentValueHttpGetIn" />
+      <wsdl:output message="tns:CalculatePaymentValueHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBulletinBoardState">
+      <wsdl:input message="tns:UpdateBulletinBoardStateHttpGetIn" />
+      <wsdl:output message="tns:UpdateBulletinBoardStateHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertBulletinBoard">
+      <wsdl:input message="tns:InsertBulletinBoardHttpGetIn" />
+      <wsdl:output message="tns:InsertBulletinBoardHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserAccountNotify">
+      <wsdl:input message="tns:InsertUserAccountNotifyHttpGetIn" />
+      <wsdl:output message="tns:InsertUserAccountNotifyHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyCategory">
+      <wsdl:input message="tns:GetCompanyCategoryHttpGetIn" />
+      <wsdl:output message="tns:GetCompanyCategoryHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCompanyCategoryState">
+      <wsdl:input message="tns:UpdateCompanyCategoryStateHttpGetIn" />
+      <wsdl:output message="tns:UpdateCompanyCategoryStateHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetSevenDateBonusForConsole">
+      <wsdl:input message="tns:SetSevenDateBonusForConsoleHttpGetIn" />
+      <wsdl:output message="tns:SetSevenDateBonusForConsoleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMail">
+      <wsdl:input message="tns:SendMailHttpGetIn" />
+      <wsdl:output message="tns:SendMailHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMailMult">
+      <wsdl:input message="tns:SendMailMultHttpGetIn" />
+      <wsdl:output message="tns:SendMailMultHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="MgmtAPIHttpPost">
+    <wsdl:operation name="RefreshRedis">
+      <wsdl:input message="tns:RefreshRedisHttpPostIn" />
+      <wsdl:output message="tns:RefreshRedisHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAccountSummary">
+      <wsdl:input message="tns:GetUserAccountSummaryHttpPostIn" />
+      <wsdl:output message="tns:GetUserAccountSummaryHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAccountTotalSummary">
+      <wsdl:input message="tns:GetUserAccountTotalSummaryHttpPostIn" />
+      <wsdl:output message="tns:GetUserAccountTotalSummaryHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OpenSite">
+      <wsdl:input message="tns:OpenSiteHttpPostIn" />
+      <wsdl:output message="tns:OpenSiteHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MaintainSite">
+      <wsdl:input message="tns:MaintainSiteHttpPostIn" />
+      <wsdl:output message="tns:MaintainSiteHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EnableWithdrawlTemporaryMaintenance">
+      <wsdl:input message="tns:EnableWithdrawlTemporaryMaintenanceHttpPostIn" />
+      <wsdl:output message="tns:EnableWithdrawlTemporaryMaintenanceHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DisableWithdrawlTemporaryMaintenance">
+      <wsdl:input message="tns:DisableWithdrawlTemporaryMaintenanceHttpPostIn" />
+      <wsdl:output message="tns:DisableWithdrawlTemporaryMaintenanceHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAnnouncement">
+      <wsdl:input message="tns:UpdateAnnouncementHttpPostIn" />
+      <wsdl:output message="tns:UpdateAnnouncementHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CalculatePaymentValue">
+      <wsdl:input message="tns:CalculatePaymentValueHttpPostIn" />
+      <wsdl:output message="tns:CalculatePaymentValueHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBulletinBoardState">
+      <wsdl:input message="tns:UpdateBulletinBoardStateHttpPostIn" />
+      <wsdl:output message="tns:UpdateBulletinBoardStateHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertBulletinBoard">
+      <wsdl:input message="tns:InsertBulletinBoardHttpPostIn" />
+      <wsdl:output message="tns:InsertBulletinBoardHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserAccountNotify">
+      <wsdl:input message="tns:InsertUserAccountNotifyHttpPostIn" />
+      <wsdl:output message="tns:InsertUserAccountNotifyHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyCategory">
+      <wsdl:input message="tns:GetCompanyCategoryHttpPostIn" />
+      <wsdl:output message="tns:GetCompanyCategoryHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCompanyCategoryState">
+      <wsdl:input message="tns:UpdateCompanyCategoryStateHttpPostIn" />
+      <wsdl:output message="tns:UpdateCompanyCategoryStateHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetSevenDateBonusForConsole">
+      <wsdl:input message="tns:SetSevenDateBonusForConsoleHttpPostIn" />
+      <wsdl:output message="tns:SetSevenDateBonusForConsoleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMail">
+      <wsdl:input message="tns:SendMailHttpPostIn" />
+      <wsdl:output message="tns:SendMailHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMailMult">
+      <wsdl:input message="tns:SendMailMultHttpPostIn" />
+      <wsdl:output message="tns:SendMailMultHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MgmtAPISoap" type="tns:MgmtAPISoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RefreshRedis">
+      <soap:operation soapAction="http://tempuri.org/RefreshRedis" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAccountSummary">
+      <soap:operation soapAction="http://tempuri.org/GetUserAccountSummary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAccountTotalSummary">
+      <soap:operation soapAction="http://tempuri.org/GetUserAccountTotalSummary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OpenSite">
+      <soap:operation soapAction="http://tempuri.org/OpenSite" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MaintainSite">
+      <soap:operation soapAction="http://tempuri.org/MaintainSite" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnableWithdrawlTemporaryMaintenance">
+      <soap:operation soapAction="http://tempuri.org/EnableWithdrawlTemporaryMaintenance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisableWithdrawlTemporaryMaintenance">
+      <soap:operation soapAction="http://tempuri.org/DisableWithdrawlTemporaryMaintenance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAnnouncement">
+      <soap:operation soapAction="http://tempuri.org/UpdateAnnouncement" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalculatePaymentValue">
+      <soap:operation soapAction="http://tempuri.org/CalculatePaymentValue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBulletinBoardState">
+      <soap:operation soapAction="http://tempuri.org/UpdateBulletinBoardState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertBulletinBoard">
+      <soap:operation soapAction="http://tempuri.org/InsertBulletinBoard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserAccountNotify">
+      <soap:operation soapAction="http://tempuri.org/InsertUserAccountNotify" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyCategory">
+      <soap:operation soapAction="http://tempuri.org/GetCompanyCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCompanyCategoryState">
+      <soap:operation soapAction="http://tempuri.org/UpdateCompanyCategoryState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetSevenDateBonusForConsole">
+      <soap:operation soapAction="http://tempuri.org/SetSevenDateBonusForConsole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMail">
+      <soap:operation soapAction="http://tempuri.org/SendMail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMailMult">
+      <soap:operation soapAction="http://tempuri.org/SendMailMult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MgmtAPISoap12" type="tns:MgmtAPISoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RefreshRedis">
+      <soap12:operation soapAction="http://tempuri.org/RefreshRedis" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAccountSummary">
+      <soap12:operation soapAction="http://tempuri.org/GetUserAccountSummary" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAccountTotalSummary">
+      <soap12:operation soapAction="http://tempuri.org/GetUserAccountTotalSummary" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OpenSite">
+      <soap12:operation soapAction="http://tempuri.org/OpenSite" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MaintainSite">
+      <soap12:operation soapAction="http://tempuri.org/MaintainSite" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnableWithdrawlTemporaryMaintenance">
+      <soap12:operation soapAction="http://tempuri.org/EnableWithdrawlTemporaryMaintenance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisableWithdrawlTemporaryMaintenance">
+      <soap12:operation soapAction="http://tempuri.org/DisableWithdrawlTemporaryMaintenance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAnnouncement">
+      <soap12:operation soapAction="http://tempuri.org/UpdateAnnouncement" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalculatePaymentValue">
+      <soap12:operation soapAction="http://tempuri.org/CalculatePaymentValue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBulletinBoardState">
+      <soap12:operation soapAction="http://tempuri.org/UpdateBulletinBoardState" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertBulletinBoard">
+      <soap12:operation soapAction="http://tempuri.org/InsertBulletinBoard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserAccountNotify">
+      <soap12:operation soapAction="http://tempuri.org/InsertUserAccountNotify" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyCategory">
+      <soap12:operation soapAction="http://tempuri.org/GetCompanyCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCompanyCategoryState">
+      <soap12:operation soapAction="http://tempuri.org/UpdateCompanyCategoryState" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetSevenDateBonusForConsole">
+      <soap12:operation soapAction="http://tempuri.org/SetSevenDateBonusForConsole" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMail">
+      <soap12:operation soapAction="http://tempuri.org/SendMail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMailMult">
+      <soap12:operation soapAction="http://tempuri.org/SendMailMult" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MgmtAPIHttpGet" type="tns:MgmtAPIHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="RefreshRedis">
+      <http:operation location="/RefreshRedis" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAccountSummary">
+      <http:operation location="/GetUserAccountSummary" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAccountTotalSummary">
+      <http:operation location="/GetUserAccountTotalSummary" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OpenSite">
+      <http:operation location="/OpenSite" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MaintainSite">
+      <http:operation location="/MaintainSite" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnableWithdrawlTemporaryMaintenance">
+      <http:operation location="/EnableWithdrawlTemporaryMaintenance" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisableWithdrawlTemporaryMaintenance">
+      <http:operation location="/DisableWithdrawlTemporaryMaintenance" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAnnouncement">
+      <http:operation location="/UpdateAnnouncement" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalculatePaymentValue">
+      <http:operation location="/CalculatePaymentValue" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBulletinBoardState">
+      <http:operation location="/UpdateBulletinBoardState" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertBulletinBoard">
+      <http:operation location="/InsertBulletinBoard" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserAccountNotify">
+      <http:operation location="/InsertUserAccountNotify" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyCategory">
+      <http:operation location="/GetCompanyCategory" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCompanyCategoryState">
+      <http:operation location="/UpdateCompanyCategoryState" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetSevenDateBonusForConsole">
+      <http:operation location="/SetSevenDateBonusForConsole" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMail">
+      <http:operation location="/SendMail" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="SendMailMult">
+      <http:operation location="/SendMailMult" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MgmtAPIHttpPost" type="tns:MgmtAPIHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="RefreshRedis">
+      <http:operation location="/RefreshRedis" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAccountSummary">
+      <http:operation location="/GetUserAccountSummary" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAccountTotalSummary">
+      <http:operation location="/GetUserAccountTotalSummary" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OpenSite">
+      <http:operation location="/OpenSite" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MaintainSite">
+      <http:operation location="/MaintainSite" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnableWithdrawlTemporaryMaintenance">
+      <http:operation location="/EnableWithdrawlTemporaryMaintenance" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisableWithdrawlTemporaryMaintenance">
+      <http:operation location="/DisableWithdrawlTemporaryMaintenance" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAnnouncement">
+      <http:operation location="/UpdateAnnouncement" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalculatePaymentValue">
+      <http:operation location="/CalculatePaymentValue" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBulletinBoardState">
+      <http:operation location="/UpdateBulletinBoardState" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertBulletinBoard">
+      <http:operation location="/InsertBulletinBoard" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserAccountNotify">
+      <http:operation location="/InsertUserAccountNotify" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyCategory">
+      <http:operation location="/GetCompanyCategory" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCompanyCategoryState">
+      <http:operation location="/UpdateCompanyCategoryState" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetSevenDateBonusForConsole">
+      <http:operation location="/SetSevenDateBonusForConsole" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMail">
+      <http:operation location="/SendMail" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="SendMailMult">
+      <http:operation location="/SendMailMult" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MgmtAPI">
+    <wsdl:port name="MgmtAPISoap" binding="tns:MgmtAPISoap">
+      <soap:address location="http://ocw.dev.mts.idv.tw/API/MgmtAPI.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MgmtAPISoap12" binding="tns:MgmtAPISoap12">
+      <soap12:address location="http://ocw.dev.mts.idv.tw/API/MgmtAPI.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MgmtAPIHttpGet" binding="tns:MgmtAPIHttpGet">
+      <http:address location="http://ocw.dev.mts.idv.tw/API/MgmtAPI.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MgmtAPIHttpPost" binding="tns:MgmtAPIHttpPost">
+      <http:address location="http://ocw.dev.mts.idv.tw/API/MgmtAPI.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
